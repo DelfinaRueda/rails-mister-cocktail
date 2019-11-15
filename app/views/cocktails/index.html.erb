@@ -1,10 +1,20 @@
-<h1>Cocktails:</h1>
-<hr>
-
-<% @cocktails.each do |cocktail|  %>
-<p><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
-<p><p><%= link_to 'Delete', cocktail_path(cocktail.id), method: :delete %></p></p>
-<hr>
-<% end %>
-
+<div class=navbar>
+  <h1>Mister Cocktail</h1>
+</div>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1570598912132-0ba1dc952b7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60);">
+  <div class="container">
+    <h1>Cocktails</h1>
+    <p>Your easy guide to getting drunk with style</p>
+  </div>
+</div>
+<div class="container">
+<div class="cards">
+  <% @cocktails.each do |cocktail|  %>
+    <div class="card">
+      <p><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
+      <p><%= link_to 'Delete', cocktail_path(cocktail.id), method: :delete, class:"btn btn-danger" %></p>
+    </div>
+  <% end %>
+</div>
 <%= link_to "Add a new cocktail", new_cocktail_path(@cocktail)%>
+</div>
