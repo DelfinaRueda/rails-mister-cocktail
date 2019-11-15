@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   # resources :doses
   # resources :ingredient
 
-  root to: "pages#home"
   resources :cocktails do
     resources :doses, only: [:new, :create]
   end
