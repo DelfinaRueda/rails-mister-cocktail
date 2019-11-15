@@ -10,10 +10,17 @@
 <div class="container">
 <div class="cards">
   <% @cocktails.each do |cocktail|  %>
-    <div class="card">
-      <p><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
-      <p><%= link_to 'Delete', cocktail_path(cocktail.id), method: :delete, class:"btn btn-danger" %></p>
-    </div>
+    <% if cocktail.photo.attached? %>
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path cocktail.photo.key, height: 300, width: 400, crop: :fill %>')">
+        <p><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
+        <p><%= link_to 'Delete', cocktail_path(cocktail.id), method: :delete, class:"btn btn-danger" %></p>
+      </div>
+    <% else %>
+      <div class="card">
+        <p><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
+        <p><%= link_to 'Delete', cocktail_path(cocktail.id), method: :delete, class:"btn btn-danger" %></p>
+      </div>
+    <% end %>
   <% end %>
 </div>
 <%= link_to "Add a new cocktail", new_cocktail_path(@cocktail)%>
